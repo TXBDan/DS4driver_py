@@ -92,18 +92,21 @@ class DS4driver:
 				if event.type == 0x03: #EV_ABS
 									
 					if event.code == 0x10: #ABS_HAT0X
-						self.btn_dleft = btn_dright = False
 						if event.value == -1:
 							self.btn_dleft = True
 						elif event.value == 1:
 							self.btn_dright = True
-					
-					elif event.code == 0x11: #ABS_HAT0Y
-						self.btn_dup = btn_ddown = False
+						else:
+							self.btn_dleft = False
+							self.btn_dright = False
+					elif event.code == 0x11: #ABS_HAT0Y				
 						if event.value == -1:
 							self.btn_dup = True
 						elif event.value == 1:
 							self.btn_ddown = True
+						else:
+							self.btn_dup = False
+							self.btn_ddown = False
 							
 					elif event.code == 0x00: #ABS_X
 						self.leftH = event.value	# 0 to 255, left to right
